@@ -23,28 +23,47 @@ reverse connection
 
 ## 1.2
 4 later internet model
--a bidirectional, reliable stream of bytes.
+A bidirectional, reliable stream of bytes.
 
-Source end-host
-### Application     : http requests (bitTorrent..) are sent directly from application layer to
+* Application     : http requests (bitTorrent..) are sent directly from application layer to
                   its peer at the other end – the web server Application.
-### Transport       : guarantee correct inorder delivery of data
+* Transport       : guarantee correct inorder delivery of data
                   most common transport layer servide is TCP.
                   Some application need TCP : video conference... Use UDP
                   controls congestion.
-### Network         : deliver packets end-to-end across the internet from the source to the destination.
+* Network         : deliver packets end-to-end across the internet from the source to the destination.
                   link layer is provide a service to network layer. Network layer hands datagram to link layer,
                   tell it to sent over the first link.
                   * network layer is "special" : must use IP (internet protocol)
                   IP:
                   - no promises of delivery
                   - no guarantee of datagram not get lost/corrupt
-                  ->So we need transport layer
-### Link            : carry the data over one link at a time. link layers (ethernet, wifi...)
+                  - So we need transport layer
+* Link            : carry the data over one link at a time. link layers (ethernet, wifi...)
 
 * Each layer is only communicating with the same layer at the other end.
 
 ## 1.3
+
+### Service provided by IP
+
+IP's job: deliver datagram to the other end.
+IP servide model:
+datagram        : individually routed packet. hop by hop routing.
+unreliable      : packets might be dropped.
+best effort     : drop only if necessary.
+connectionless  : no per flow state, packets might be mis-sequenced.
+
+IP service model:
+1. tries to prevent packets looping forever between routers. By adding adding a step check initialized to 128.
+when reduced to 0, it thinks that the datagram got stuck in loop.
+2. fragment packets if they are too long.
+3. uses a header checksum to reduce chances of delivering to wrong destination.
+4. allow for new version of IP (ipv4 - 32 bit addresses, ipv6 - 128 bit)
+5. allow for new options to be added.
+
+
+
 
 
 
