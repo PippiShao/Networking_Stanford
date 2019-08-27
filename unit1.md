@@ -16,10 +16,10 @@ tells other clients it has that piece so they can download it too.
 2 clients connect each other.
 want to go through NAT (connet to internet easy, while not cannot connect back)
 1. client is behing NAT:
--> use rendezvous to open connection
+ use rendezvous to open connection
 reverse connection
 2. clients are behing NAT:
--> use relay to forward
+ use relay to forward
 
 ## 1.2
 4 later internet model
@@ -61,6 +61,41 @@ when reduced to 0, it thinks that the datagram got stuck in loop.
 3. uses a header checksum to reduce chances of delivering to wrong destination.
 4. allow for new version of IP (ipv4 - 32 bit addresses, ipv6 - 128 bit)
 5. allow for new options to be added.
+
+## 1.4
+
+### A Day in the Life of a Packet
+
+TCP: three way handshake “SYN, SYN-ACK, ACK”.
+    1. sync
+    2. acknowledge the sync
+    3. acknowledge
+
+To open TCP stream to another program, we need 2 addresses:
+    1. IP address. The address the network layer uses to deliver packets to the computer
+    2. TCP port. Tells the computer's software which application to deliver data to.
+
+IP packets between clients and server take hops though routers.
+Router use forwarding table to decide which of its links to sent it out on or to deliver to its own software.
+
+## 1.5
+
+### Packet Switching Principle
+
+Packet Switching
+
+Packet: a self-contained unit of data that carries info necesary for it to reach its destination.
+Packet Switching: independently for each arriving packet, pick its outgoing link. If the link is free, send it. else hold the packet for later.
+Optimization for packet switching: a switch can have a table of destination addresses and the next hop. When it receives a packet,
+it looks up the address in the table, and sends the packet to the appropriate next hop.
+Flow: A collection of datagrams belonging to the same end-to-end communication
+
+Packet Switching benefits:
+1. simple packet forwarding.
+2. efficient sharing of links.
+
+
+
 
 
 
